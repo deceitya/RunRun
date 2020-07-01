@@ -5,4 +5,7 @@ branches:
 projects:
   RunRun:
     path: ""
+    libs:
+      - src: FlowyProject/Flowy/Flowy
+      - src: CortexPE/Commando/Commando
 ...

@@ -1,8 +1,23 @@
 name: RunRun
-main: deceitya\runrun\Main
+main: deceitya\RunRun\Main
 version: 1.0.0
 api: [3.13.0]
 load: POSTWORLD
 author: deceitya
 description: レースプラグイン
 website: https://github.com/deceitya/RunRun
+
+permissions:
+  runrun.command:
+    default: true
+    children:
+      runrun.command.join:
+        default: true
+      runrun.command.open:
+        default: op
+      runrun.command.invite:
+        default: op
+      runrun.command.prepare:
+        default: op
+      runrun.command.start:
+        default: op
