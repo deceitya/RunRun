@@ -7,12 +7,14 @@ namespace deceitya\RunRun\Particle;
 use pocketmine\entity\Entity;
 use pocketmine\level\particle\FloatingTextParticle;
 use pocketmine\network\mcpe\protocol\MovePlayerPacket;
+use pocketmine\network\mcpe\protocol\RemoveActorPacket;
 use pocketmine\network\mcpe\protocol\SetActorDataPacket;
 use pocketmine\Player;
 use pocketmine\Server;
 
 /**
  * 移動可能なFloatingTextParticle
+ * これがのメインのネタ
  */
 class MobileTextParticle extends FloatingTextParticle
 {
@@ -47,6 +49,14 @@ class MobileTextParticle extends FloatingTextParticle
         $packet->pitch = 0;
         $packet->yaw = 0;
         $packet->headYaw = 0;
+
+        Server::getInstance()->broadcastPacket($players, $packet);
+    }
+
+    public function remove(array $players): void
+    {
+        $packet = new RemoveActorPacket();
+        $packet->entityUniqueId = $this->entityId;
 
         Server::getInstance()->broadcastPacket($players, $packet);
     }

@@ -57,11 +57,12 @@ class Main extends PluginBase
      */
     public function createNewSession(string $course): ?GameSession
     {
-        if (!$this->config->existsCourse($course)) {
+        $data = $this->config->getCheckPointData($course);
+        if ($data === null) {
             return null;
         }
 
-        $this->session = new GameSession($course);
+        $this->session = new GameSession($data);
         return $this->session;
     }
 

@@ -10,9 +10,8 @@ use pocketmine\event\Event;
 class SessionEvent extends Event
 {
     /** @var GameSession */
-    //protected $session;
+    protected $session;
 
-    /*
     public function __construct(GameSession $session)
     {
         $this->session = $session;
@@ -21,5 +20,5 @@ class SessionEvent extends Event
     public function getSession(): GameSession
     {
         return $this->session;
-    }*/
+    }
 }

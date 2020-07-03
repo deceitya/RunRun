@@ -14,19 +14,18 @@ class RunRunConfig
         $this->routes = json_decode(file_get_contents($file), true);
     }
 
-    public function existsCourse(string $course): bool
-    {
-        return isset($this->routes[$course]);
-    }
-
     /**
      * コースのチェックポイントのデータを取得
      *
-     * @param string $cource
+     * @param string $course
      * @return array|null
      */
     public function getCheckPointData(string $course): ?array
     {
-        return $this->routes[$course];
+        if (isset($this->routes[$course])) {
+            return $this->routes[$course];
+        }
+
+        return null;
     }
 }

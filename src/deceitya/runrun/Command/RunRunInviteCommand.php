@@ -6,6 +6,8 @@ namespace deceitya\RunRun\Command;
 
 use CortexPE\Commando\BaseSubCommand;
 use deceitya\RunRun\Event\Session\StartInvitingEvent;
+use deceitya\RunRun\Main;
+use deceitya\RunRun\Session\GameSession;
 use pocketmine\command\CommandSender;
 
 class RunRunInviteCommand extends BaseSubCommand
@@ -17,6 +19,11 @@ class RunRunInviteCommand extends BaseSubCommand
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
-        (new StartInvitingEvent())->call();
+        $session = Main::getInstance()->getSession();
+        if ($session instanceof GameSession) {
+            (new StartInvitingEvent($session))->call();
+        } else {
+            $sender->sendMessage('[RunRun] セッションが開いていません。');
+        }
     }
 }

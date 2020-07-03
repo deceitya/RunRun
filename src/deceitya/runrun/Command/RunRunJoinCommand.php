@@ -29,15 +29,15 @@ class RunRunJoinCommand extends BaseSubCommand
         if ($session instanceof GameSession) {
             if ($session->getPhase() === GameSession::PHASE_INVITING) {
                 if ($session->addPlayer($sender)) {
-                    $sender->sendMessage('セッションに参加しました。');
+                    $sender->getServer()->broadcastMessage("[RunRun] {$sender->getName()}さんがセッションに参加しました。");
                 } else {
-                    $sender->sendMessage('既に参加しました。');
+                    $sender->sendMessage('[RunRun] 既にセッションに参加しています。');
                 }
             } else {
-                $sender->sendMessage('参加できないフェーズです');
+                $sender->sendMessage('[RunRun] 参加できないフェーズです');
             }
         } else {
-            $sender->sendMessage('セッションが開いていません。');
+            $sender->sendMessage('[RunRun] セッションが開いていません。');
         }
     }
 }

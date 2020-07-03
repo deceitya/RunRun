@@ -9,6 +9,10 @@ use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\scheduler\Task;
 
+/**
+ * 指定した地点のマーカー
+ * これがメインのネタ
+ */
 class CheckPointMarker extends Task
 {
     /** @var Player */
@@ -28,9 +32,10 @@ class CheckPointMarker extends Task
     public function onRun(int $currentTick)
     {
         $position = $this->player->add($this->destination
-            ->subtract($this->player->add(0, $this->player->getEyeHeight()))
+            ->subtract($this->player->asVector3())
             ->normalize()
-            ->multiply(5));
+            ->multiply(5))
+            ->add(0, $this->player->getEyeHeight());
         $this->particle->setComponents($position->x, $position->y, $position->z);
         $this->particle->updatePosition([$this->player]);
 

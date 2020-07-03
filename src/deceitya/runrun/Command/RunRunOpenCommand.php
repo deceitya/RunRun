@@ -7,6 +7,7 @@ namespace deceitya\RunRun\Command;
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use deceitya\RunRun\Main;
+use deceitya\RunRun\Session\GameSession;
 use pocketmine\command\CommandSender;
 
 class RunRunOpenCommand extends BaseSubCommand
@@ -19,12 +20,12 @@ class RunRunOpenCommand extends BaseSubCommand
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
-        if (Main::getInstance()->createNewSession($args['course'])) {
-            Main::getInstance()->getSession()->run();
-
-            $sender->sendMessage('新しいセッションを開きました。');
+        $session = Main::getInstance()->createNewSession($args['course']);
+        if ($session instanceof GameSession) {
+            $session->run();
+            $sender->sendMessage('[RunRun] 新しいセッションを開きました。');
         } else {
-            $sender->sendMessage('既にセッションが開かれています。');
+            $sender->sendMessage('[RunRun] 存在しないコースです');
         }
     }
 }
