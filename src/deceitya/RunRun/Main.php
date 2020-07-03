@@ -29,7 +29,7 @@ class Main extends PluginBase
     {
         self::$instance = $this;
 
-        $this->getServer()->getCommandMap()->register('RunRun', new RunRunCommand('runrun', 'RunRunコマンド'));
+        $this->getServer()->getCommandMap()->register('RunRun', new RunRunCommand($this, 'runrun', 'RunRunコマンド'));
 
         $this->saveResource('route.json');
         $this->config = new RunRunConfig();
