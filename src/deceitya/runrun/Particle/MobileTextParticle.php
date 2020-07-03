@@ -53,6 +53,12 @@ class MobileTextParticle extends FloatingTextParticle
         Server::getInstance()->broadcastPacket($players, $packet);
     }
 
+    /**
+     * 消す
+     *
+     * @param array $players
+     * @return void
+     */
     public function remove(array $players): void
     {
         $packet = new RemoveActorPacket();
