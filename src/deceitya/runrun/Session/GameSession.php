@@ -80,6 +80,16 @@ class GameSession
     }
 
     /**
+     * セッションにいるプレイヤー達取得
+     *
+     * @return array
+     */
+    public function getPlayers(): array
+    {
+        return $this->players;
+    }
+
+    /**
      * セッションフロー
      *
      * @return void

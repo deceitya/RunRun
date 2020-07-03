@@ -21,7 +21,11 @@ class RunRunPrepareCommand extends BaseSubCommand
     {
         $session = Main::getInstance()->getSession();
         if ($session instanceof GameSession) {
-            (new StartPreparingEvent($session))->call();
+            if (!empty($session->getPlayers())) {
+                (new StartPreparingEvent($session))->call();
+            } else {
+                $sender->sendMessage('[RunRun] セッションにプレイヤーがいないため、進行することができません。');
+            }
         } else {
             $sender->sendMessage('[RunRun] セッションが開いていません。');
         }
